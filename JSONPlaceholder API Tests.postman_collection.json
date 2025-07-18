@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "31fca42a-fbe6-4c67-abbc-9e6b89f788c7",
+		"name": "JSONPlaceholder API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46847424",
+		"_collection_link": "https://www.postman.com/warped-astronaut-2876780/workspace/api-testing-project/collection/46847424-31fca42a-fbe6-4c67-abbc-9e6b89f788c7?action=share&source=collection_link&creator=46847424"
+	},
+	"item": [
+		{
+			"name": "GET All Comments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test 1: Prüft, ob der Statuscode 200 ist\r",
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test 2: Prüft, ob der Content-Type im Header 'application/json' ist\r",
+							"pm.test(\"Content-Type is application/json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"// Test 3: Prüft, ob der Response-Body ein Array (Liste) ist und nicht leer ist\r",
+							"pm.test(\"Response is a non-empty array\", function () {\r",
+							"    const responseBody = pm.response.json(); // Parst den JSON-Response-Body\r",
+							"    pm.expect(Array.isArray(responseBody)).to.be.true; // Prüft, ob es sich um ein Array handelt\r",
+							"    pm.expect(responseBody.length).to.be.above(0);     // Prüft, ob die Länge des Arrays größer als 0 ist\r",
+							"});\r",
+							"\r",
+							"// Test 4: Prüft, ob das erste Element im Array eine 'id' hat\r",
+							"pm.test(\"First comment has an ID\", function () {\r",
+							"    const responseBody = pm.response.json();\r",
+							"    pm.expect(responseBody[0]).to.have.property('id'); // Prüft, ob das erste Objekt eine Eigenschaft 'id' hat\r",
+							"    pm.expect(responseBody[0].id).to.be.a('number'); // Prüft, ob der Wert der 'id' eine Zahl ist\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test 1: Prüft, ob der Statuscode 200 ist\r",
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test 2: Prüft, ob der Content-Type im Header 'application/json' ist\r",
+							"pm.test(\"Content-Type is application/json\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"// Test 3: Prüft, ob der Response-Body ein Array (Liste) ist und nicht leer ist\r",
+							"pm.test(\"Response is a non-empty array\", function () {\r",
+							"    const responseBody = pm.response.json();\r",
+							"    pm.expect(Array.isArray(responseBody)).to.be.true;\r",
+							"    pm.expect(responseBody.length).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							"// Test 4: Prüft, ob der erste Benutzer einen 'name' hat\r",
+							"pm.test(\"First user has a name\", function () {\r",
+							"    const responseBody = pm.response.json();\r",
+							"    pm.expect(responseBody[0]).to.have.property('name');\r",
+							"    pm.expect(responseBody[0].name).to.be.a('string');\r",
+							"    pm.expect(responseBody[0].name.length).to.be.above(0);\r",
+							"});\r",
+							"\r",
+							"// Test 5: Prüft, ob der erste Benutzer eine 'email' hat\r",
+							"pm.test(\"First user has an email\", function () {\r",
+							"    const responseBody = pm.response.json();\r",
+							"    pm.expect(responseBody[0]).to.have.property('email');\r",
+							"    pm.expect(responseBody[0].email).to.be.a('string');\r",
+							"    pm.expect(responseBody[0].email.length).to.be.above(0);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/users",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST New Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test 1: Prüft, ob der Statuscode 201 ist\r",
+							"pm.test(\"Status code is 201 Created\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"// Test 2: Prüft, ob der Response-Body eine ID enthält und diese eine Zahl ist\r",
+							"pm.test(\"Response body contains a valid ID\", function () {\r",
+							"    const responseBody = pm.response.json();\r",
+							"    pm.expect(responseBody).to.have.property('id'); // Prüft, ob die Eigenschaft 'id' existiert\r",
+							"    pm.expect(responseBody.id).to.be.a('number');   // Prüft, ob der Wert der 'id' eine Zahl ist\r",
+							"    pm.expect(responseBody.id).to.be.above(0);      // Prüft, ob die ID größer als 0 ist (gültige ID)\r",
+							"});\r",
+							"\r",
+							"// Test 3: Prüft, ob der Name im Response-Body dem gesendeten Namen entspricht\r",
+							"pm.test(\"Comment name matches sent data\", function () {\r",
+							"    const responseBody = pm.response.json();\r",
+							"    pm.expect(responseBody.name).to.eql(\"Mein erster Postman Kommentar\"); // 'eql' für tieferen Vergleich\r",
+							"});\r",
+							"\r",
+							"// Test 4: Prüft, ob die E-Mail im Response-Body der gesendeten E-Mail entspricht\r",
+							"pm.test(\"Comment email matches sent data\", function () {\r",
+							"    const responseBody = pm.response.json();\r",
+							"    pm.expect(responseBody.email).to.eql(\"postman@example.com\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"postId\": 1,\r\n  \"name\": \"Mein erster Postman Kommentar\",\r\n  \"email\": \"postman@example.com\",\r\n  \"body\": \"Dies ist ein Testkommentar erstellt mit Postman.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NEG - GET Non-existent Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test 1: Prüft, ob der Statuscode 404 ist (negativer Test)\r",
+							"pm.test(\"Status code is 404 Not Found\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"// Test 2: Prüft, ob der Response-Body leer ist oder ein leeres Objekt enthält\r",
+							"// (jsonplaceholder gibt bei 404 meist ein leeres Objekt {} zurück)\r",
+							"pm.test(\"Response body is empty or empty object\", function () {\r",
+							"    const responseBody = pm.response.json(); // Versuche, den Body zu parsen\r",
+							"    // Überprüfe, ob der Body entweder null/undefined ist oder ein leeres Objekt {}\r",
+							"    pm.expect(responseBody === null || typeof responseBody === 'undefined' || (typeof responseBody === 'object' && Object.keys(responseBody).length === 0)).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/comments/9999999",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"comments",
+						"9999999"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

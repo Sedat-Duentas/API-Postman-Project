@@ -1,0 +1,18 @@
+# Ignored files/folders for Postman API project
+*.log
+node_modules/       # If you use Newman or other Node.js tools
+.idea/              # IntelliJ IDEA project files
+*.iml
+*.ipr
+*.iws
+.vscode/            # VS Code settings
+
+# Postman generated/temporary files
+*.postman_globals.json # Usually not versioned
+*.postman_desktop.json # Local client settings
+
+# Sensitive Environment Variables (e.g., API keys, passwords)
+# It's HIGHLY recommended NOT to commit sensitive data in Environments.
+# Store them as local variables in Postman or use environment-specific files outside Git.
+# If your environment JSON contains sensitive data, IGNORE it:
+# my_environment.postman_environment.json

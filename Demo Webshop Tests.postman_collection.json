@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "816253a2-05d5-4749-b01c-38bc5e4796d8",
+		"name": "Demo Webshop Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46847424",
+		"_collection_link": "https://www.postman.com/warped-astronaut-2876780/workspace/api-testing-project/collection/46847424-816253a2-05d5-4749-b01c-38bc5e4796d8?action=share&source=collection_link&creator=46847424"
+	},
+	"item": [
+		{
+			"name": "GET Demo Webshop Homepage",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test 1: Prüft, ob der Statuscode 200 ist\r",
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test 2: Prüft, ob der Body HTML-Inhalt enthält (z.B. den Titel der Seite)\r",
+							"pm.test(\"Response body contains expected HTML content\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"<title>Demo Web Shop</title>\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://demowebshop.tricentis.com/",
+					"protocol": "https",
+					"host": [
+						"demowebshop",
+						"tricentis",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Product Category - Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Test 1: Prüft, ob der Statuscode 200 ist\r",
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Test 2: Prüft, ob der Body den Titel der Kategorie enthält\r",
+							"pm.test(\"Response body contains 'Books' title\", function () {\r",
+							"    // Wir erwarten, dass die Seite den HTML-Titel \"Books\" enthält, der die Kategorie identifiziert.\r",
+							"    pm.expect(pm.response.text()).to.include(\"<h1>Books</h1>\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://demowebshop.tricentis.com/books",
+					"protocol": "https",
+					"host": [
+						"demowebshop",
+						"tricentis",
+						"com"
+					],
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
