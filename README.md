@@ -11,6 +11,8 @@ Dieses Projekt demonstriert die manuelle Testautomatisierung von RESTful APIs un
 Das Herzstück dieses Projekts sind die Postman Collections, die eine Sammlung von API-Anfragen enthalten. Die Struktur der Collections und die darin enthaltenen Anfragen sind logisch organisiert, um die Testfälle übersichtlich darzustellen.
 
 ![Postman Collection Overview](link_zum_screenshot_deiner_postman_collection.png)
+<img width="1908" height="1027" alt="Readme" src="https://github.com/user-attachments/assets/a203e0a9-fa67-4c29-a259-9e3e9fa58b7d" />
+
 ## API-Endpunkte
 Dieses Projekt interagiert mit den folgenden API-Endpunkten:
 
